@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clube dos Tenistas da Bahia | Nossos Projetos</title>
+    <title>Infográfico de Projetos | Clube dos Tenistas da Bahia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,6 +79,14 @@
 
     <main class="container mx-auto p-4 md:p-8">
 
+        <section id="banner-image" class="mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-4">
+                <img src="imagem1.jpeg" 
+                     alt="Jovens praticando tênis de mesa em um projeto social do CTB" 
+                     class="w-full h-auto rounded-md object-cover">
+            </div>
+        </section>
+
         <section id="intro" class="my-12">
             <h2 class="section-title">O Poder da Inclusão Social pelo Esporte</h2>
             <p class="section-subtitle">
@@ -106,10 +114,23 @@
             </div>
         </section>
 
+        <section id="cta-projeto-escolas" class="my-16 text-center">
+             <div class="bg-white rounded-lg shadow-xl p-8">
+                <h2 class="section-title">Conheça Nosso Novo Projeto Estratégico!</h2>
+                <p class="section-subtitle">
+                   Desenvolvemos uma iniciativa focada em transformar a vida de 900 alunos da rede municipal de Salvador. Clique abaixo para ver os detalhes e o impacto esperado.
+                </p>
+                <a href="projeto_escolas.html" class="inline-block bg-[#CC333F] text-white font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 text-lg">
+                    Ver Projeto "Transformando Vidas"
+                </a>
+             </div>
+        </section>
+
+
         <section id="visao" class="my-16">
-            <h2 class="section-title">Nossa Visão para o Futuro</h2>
+            <h2 class="section-title">Nossa Visão Geral para o Futuro</h2>
             <p class="section-subtitle">
-                Para continuar nossa missão, desenvolvemos três novos projetos estratégicos que visam desde a expansão da base de praticantes em escolas municipais até a formação de atletas de alto rendimento e a inovação com tecnologia no esporte.
+                Além da iniciativa principal, planejamos outras ações estratégicas que visam desde a formação de atletas de alto rendimento até a inovação com tecnologia no esporte.
             </p>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="card">
@@ -129,16 +150,6 @@
             </div>
         </section>
         
-        <section id="cta-projeto" class="my-16 text-center">
-            <div class="bg-gray-100 rounded-lg shadow-lg p-8">
-                 <h2 class="text-3xl font-bold text-gray-800">Conheça Nosso Projeto Destaque</h2>
-                 <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Desenvolvemos uma proposta detalhada para levar o tênis de mesa a 900 alunos da rede municipal de Salvador. Veja como pretendemos transformar vidas e criar oportunidades com o seu apoio.</p>
-                 <a href="projeto_escolas.html" class="mt-6 inline-block bg-[#CC333F] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                     Ver Detalhes do Projeto
-                 </a>
-            </div>
-        </section>
-
         <section id="investimento" class="my-16">
             <h2 class="section-title">Uma Oportunidade de Investimento com Propósito</h2>
             <p class="section-subtitle">
@@ -261,16 +272,16 @@
                     beginAtZero: true,
                     ticks: {
                        font: {
-                           family: 'Inter'
+                            family: 'Inter'
                        }
                     }
                 },
                 x: {
                    ticks: {
-                       font: {
-                           family: 'Inter'
-                       }
-                    }
+                        font: {
+                            family: 'Inter'
+                        }
+                   }
                 }
             }
         };
@@ -380,9 +391,9 @@
                 }]
             },
              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 plugins: {
                     legend: {
                         position: 'right'
                     },
@@ -391,6 +402,9 @@
                             title: tooltipTitleCallback,
                             label: function(context) {
                                 let label = context.label || '';
+                                if (Array.isArray(label)) {
+                                    label = label.join(' ');
+                                }
                                 if (label) {
                                     label += ': ';
                                 }
@@ -401,7 +415,7 @@
                             }
                         }
                     }
-                }
+                 }
             }
         });
 
