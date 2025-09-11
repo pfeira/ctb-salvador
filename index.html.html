@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico de Projetos | Clube dos Tenistas da Bahia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #CC333F;
+        }
+        .stat-label {
+            font-size: 1.125rem;
+            color: #6A4A3C;
+            margin-top: 0.5rem;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #00A0B0;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            text-align: center;
+            color: #6A4A3C;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#00A0B0] text-white p-6 shadow-md text-center">
+        <h1 class="text-3xl md:text-4xl font-bold">Clube dos Tenistas da Bahia (CTB)</h1>
+        <p class="mt-2 text-lg">Transformando Vidas Através do Esporte</p>
+        <p class="text-sm mt-1">CNPJ: 23.146.328/0001-16</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="my-12">
+            <h2 class="section-title">O Poder da Inclusão Social pelo Esporte</h2>
+            <p class="section-subtitle">
+                O CTB é uma associação sem fins lucrativos com a missão de usar o esporte como uma poderosa ferramenta de inclusão, educação e desenvolvimento humano. Já impactamos centenas de jovens e, com seu apoio, podemos expandir ainda mais nosso alcance.
+            </p>
+            <div class="max-w-md mx-auto">
+                <div class="stat-card">
+                    <div class="stat-number">600+</div>
+                    <div class="stat-label">Jovens e estudantes já beneficiados</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impacto" class="my-16">
+            <h2 class="section-title">Nosso Impacto Até Agora</h2>
+            <p class="section-subtitle">
+                Nossos projetos executados demonstram a capacidade e o compromisso do CTB em gerar resultados concretos. Através de parcerias estratégicas, levamos o tênis de mesa a diversas comunidades, integrando esporte e educação.
+            </p>
+            <div class="card">
+                <h3 class="text-xl font-semibold text-center text-[#6A4A3C] mb-4">Participantes por Projeto Executado</h3>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="projetosExecutadosChart"></canvas>
+                </div>
+                <p class="text-center mt-4 text-gray-600">O gráfico acima compara o número de participantes nos nossos dois principais projetos concluídos, mostrando a escala e o alcance de nossas iniciativas.</p>
+            </div>
+        </section>
+
+        <section id="visao" class="my-16">
+            <h2 class="section-title">Nossa Visão para o Futuro</h2>
+            <p class="section-subtitle">
+                Para continuar nossa missão, desenvolvemos três novos projetos estratégicos que visam desde a expansão da base de praticantes em escolas municipais até a formação de atletas de alto rendimento e a inovação com tecnologia no esporte.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-center text-[#6A4A3C] mb-4">Necessidade de Patrocínio por Projeto (R$)</h3>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="necessidadePatrocinioChart"></canvas>
+                    </div>
+                     <p class="text-center mt-4 text-gray-600">Este gráfico detalha o investimento necessário para cada novo projeto, permitindo uma visão clara da alocação de recursos para o nosso crescimento.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-center text-[#6A4A3C] mb-4">Meta de Participantes por Novo Projeto</h3>
+                     <div class="chart-container h-80 md:h-96">
+                        <canvas id="metaParticipantesChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-600">A visualização em bolhas compara a meta de alcance de cada iniciativa, onde o tamanho da bolha representa o número de jovens e atletas que serão impactados.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="investimento" class="my-16">
+            <h2 class="section-title">Uma Oportunidade de Investimento com Propósito</h2>
+            <p class="section-subtitle">
+                Seu apoio é fundamental para viabilizar nossos próximos passos. O investimento total de R$ 1.050.000 será distribuído entre os três projetos, com o objetivo de impactar diretamente a vida de 880 crianças, jovens e atletas.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                <div class="md:col-span-2 card">
+                    <h3 class="text-2xl font-bold text-[#CC333F] mb-4">Projeção de Impacto Total:</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#EB6841]">880</p>
+                            <p class="text-lg text-gray-700">Vidas a serem transformadas</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#EB6841]">R$ 1.050.000</p>
+                            <p class="text-lg text-gray-700">Investimento total necessário</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-3 card">
+                     <h3 class="text-xl font-semibold text-center text-[#6A4A3C] mb-4">Distribuição do Investimento Total</h3>
+                     <div class="chart-container h-80 md:h-96">
+                        <canvas id="investimentoTotalChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="parceria" class="my-16">
+             <h2 class="section-title">Por que se Tornar um Parceiro do CTB?</h2>
+             <p class="section-subtitle">
+                Ao patrocinar o Clube dos Tenistas da Bahia, sua marca se associa a um projeto de alto impacto social, ganhando visibilidade e reforçando seu compromisso com o desenvolvimento da comunidade, além de benefícios fiscais.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="card">
+                    <span class="text-5xl">🏢</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 text-[#00A0B0]">Visibilidade Institucional</h3>
+                    <p class="text-gray-600">Associe sua marca a uma causa de transformação social, ganhando exposição em eventos, materiais de divulgação e em nossa comunidade.</p>
+                </div>
+                <div class="card">
+                    <span class="text-5xl">📊</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 text-[#00A0B0]">Resultados Mensuráveis</h3>
+                    <p class="text-gray-600">Oferecemos relatórios periódicos com métricas claras de impacto, como frequência, retenção e desenvolvimento socioemocional dos participantes.</p>
+                </div>
+                 <div class="card">
+                    <span class="text-5xl">💰</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2 text-[#00A0B0]">Incentivo Fiscal</h3>
+                    <p class="text-gray-600">Nossos projetos são enquadrados na Lei de Incentivo ao Esporte (LIE), permitindo que sua empresa deduza o valor investido do imposto de renda.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#6A4A3C] text-white text-center p-6 mt-12">
+        <p class="text-xl font-bold">Junte-se a nós e faça a diferença!</p>
+        <p class="mt-2">Entre em contato para saber mais sobre como se tornar um patrocinador.</p>
+        <p class="mt-1 font-semibold">Clube dos Tenistas da Bahia - CNPJ: 23.146.328/0001-16</p>
+        <p class="text-xs mt-4 italic">Fica autorizada a utilização da minha imagem para fins de registro e divulgação, em conformidade com as diretrizes de privacidade e sem violar quaisquer normas.</p>
+    </footer>
+
+    <script>
+        const wrapLabels = (label, maxLength = 16) => {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            size: 14,
+                            family: 'Inter'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        size: 14,
+                        family: 'Inter'
+                    },
+                    titleFont: {
+                        size: 16,
+                        family: 'Inter'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                       font: {
+                           family: 'Inter'
+                       }
+                    }
+                },
+                x: {
+                   ticks: {
+                       font: {
+                           family: 'Inter'
+                       }
+                    }
+                }
+            }
+        };
+
+        const palette = {
+            red: '#CC333F',
+            orange: '#EB6841',
+            yellow: '#EDC951',
+            blue: '#00A0B0',
+            brown: '#6A4A3C'
+        };
+
+        const ctxExecutados = document.getElementById('projetosExecutadosChart').getContext('2d');
+        const labelsExecutados = ['Estudar na Bahia com Tênis de Mesa', 'Educar com Tênis de Mesa'].map(l => wrapLabels(l));
+        new Chart(ctxExecutados, {
+            type: 'bar',
+            data: {
+                labels: labelsExecutados,
+                datasets: [{
+                    label: 'Nº de Estudantes Beneficiados',
+                    data: [400, 200],
+                    backgroundColor: [palette.blue, palette.orange],
+                    borderColor: [palette.blue, palette.orange],
+                    borderWidth: 1
+                }]
+            },
+            options: defaultChartOptions
+        });
+
+        const ctxNecessidade = document.getElementById('necessidadePatrocinioChart').getContext('2d');
+        const labelsNecessidade = ['Tênis de Mesa nas Escolas Municipais de Salvador', 'Centro de Formação de Atletas CTB', 'Esporte & Tecnologia'].map(l => wrapLabels(l));
+        new Chart(ctxNecessidade, {
+            type: 'bar',
+            data: {
+                labels: labelsNecessidade,
+                datasets: [{
+                    label: 'Investimento Necessário (R$)',
+                    data: [300000, 400000, 350000],
+                    backgroundColor: [palette.red, palette.yellow, palette.blue],
+                    borderColor: [palette.red, palette.yellow, palette.blue],
+                    borderWidth: 1
+                }]
+            },
+            options: defaultChartOptions
+        });
+
+        const ctxMetas = document.getElementById('metaParticipantesChart').getContext('2d');
+        new Chart(ctxMetas, {
+            type: 'bubble',
+            data: {
+                 datasets: [{
+                    label: 'Tênis de Mesa nas Escolas',
+                    data: [{x: 10, y: 20, r: 30}], 
+                    backgroundColor: palette.red
+                },{
+                    label: 'Centro de Formação de Atletas',
+                    data: [{x: 20, y: 15, r: 15}],
+                    backgroundColor: palette.yellow
+                },{
+                    label: 'Esporte & Tecnologia',
+                    data: [{x: 30, y: 25, r: 40}],
+                    backgroundColor: palette.blue
+                }]
+            },
+            options: {
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                const participantMap = {
+                                    'Tênis de Mesa nas Escolas': 300,
+                                    'Centro de Formação de Atletas': 80,
+                                    'Esporte & Tecnologia': 500
+                                };
+                                const label = context.dataset.label || '';
+                                if (label) {
+                                    return `${label}: ${participantMap[label]} participantes`;
+                                }
+                                return null;
+                            }
+                        }
+                    }
+                 },
+                 scales: {
+                     x: { display: false },
+                     y: { display: false }
+                 }
+            }
+        });
+
+        const ctxInvestimento = document.getElementById('investimentoTotalChart').getContext('2d');
+        const labelsInvestimento = ['Escolas Municipais', 'Centro de Atletas', 'Esporte & Tecnologia'].map(l => wrapLabels(l));
+        new Chart(ctxInvestimento, {
+            type: 'doughnut',
+            data: {
+                labels: labelsInvestimento,
+                datasets: [{
+                    label: 'Distribuição do Investimento',
+                    data: [300000, 400000, 350000],
+                    backgroundColor: [palette.red, palette.yellow, palette.blue],
+                    hoverOffset: 4
+                }]
+            },
+             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
+
+
